@@ -34,7 +34,6 @@ int main(void)
         just_opened = false;
     }
 
-
     while (1)
     {
         char command;
@@ -63,7 +62,7 @@ int main(void)
             hex_octal_conv();
             break;
         case '7':
-            gcd_lcm_command();
+            gcd_lcm_calculator();
             break;
         case '8':
             number_reverser();
@@ -180,16 +179,16 @@ void show_command_list_page1(void)
 
     switch (command)
     {
-        case '0':
-            break;
-        case '<':
-            show_command_list_page2();
-            break;
-        case '>':
-            show_command_list_page2();
-            break;
-        default:
-            break;
+    case '0':
+        break;
+    case '<':
+        show_command_list_page2();
+        break;
+    case '>':
+        show_command_list_page2();
+        break;
+    default:
+        break;
     }
 
     clear_terminal();
@@ -224,21 +223,20 @@ void show_command_list_page2(void)
 
     switch (command)
     {
-        case '0':
-            break;
-        case '<':
-            show_command_list_page1();
-            break;
-        case '>':
-            show_command_list_page1();
-            break;
-        default:
-            break;
+    case '0':
+        break;
+    case '<':
+        show_command_list_page1();
+        break;
+    case '>':
+        show_command_list_page1();
+        break;
+    default:
+        break;
     }
 
     clear_terminal();
 }
-
 
 void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
@@ -285,9 +283,9 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
 
 void clear_terminal(void)
 {
-    #ifdef _WIN32
-        system("cls");  
-    #else
-        system("clear"); // should make it so this works on UNIX
-    #endif
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear"); // should make it so this works on UNIX
+#endif
 }

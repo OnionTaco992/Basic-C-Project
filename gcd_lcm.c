@@ -1,15 +1,12 @@
 // Finds either the GCD or LCM of two numbers
-// This could most certainly be improved
-// TODO make it all happen in a single function, using a bool
-// to determine if it calculates the GCD or LCM of a number
-// as the GCD is required to find the LCM 
+// This might be able to be improved
 
 #include <stdio.h>
 #include "gcd_lcm.h"
 
-void gcd_lcm_command(void)
+void gcd_lcm_calculator(void)
 {
-    int command;
+    int command, m, n, num1, num2, gcd, lcm, sum;
     char ch;
 
     printf("\n\n** GCD/LCM calculator **\nDetermines either the GCD (Greatest Common Devisor)\nOr LCM (Lowest Common Multiplier)");
@@ -26,49 +23,9 @@ void gcd_lcm_command(void)
         printf("\nInvalid input. ");
     }
 
-    switch (command)
-    {
-    case 1:
-        gcd();
-        break;
-    case 2:
-        lcm();
-        break;
-    case 0:
+    if (command == 0) {
         return;
-        break;
-    default:
-        break;
     }
-}
-
-void gcd(void)
-{
-    int m, n, num1, num2, sum, gcd;
-
-    printf("\n\nEnter the first number: ");
-    scanf("%d", &num1);
-    printf("\nEnter the second number: ");
-    scanf("%d", &num2);
-
-    m = num1;
-    n = num2;
-
-    while (n != 0)
-    {
-        sum = m % n;
-        m = n;
-        n = sum;
-    }
-
-    gcd = m;
-    printf("\n\nThe gcd of %d and %d is %d.\n", num1, num2, gcd);
-}
-
-
-void lcm(void)
-{
-    int m, n, num1, num2, gcd, lcm, sum;
 
     printf("Enter the first number: ");
     scanf("%d", &num1);
@@ -89,7 +46,11 @@ void lcm(void)
     sum = num1 * num2;
     lcm = sum / gcd;
 
-    printf("\n\nThe lcm of %d and %d is %d.\n", num1, num2, lcm);
+    if (command == 1) {
+        printf("\n\nThe GCD of %d and %d is %d.\n", num1, num2, gcd);
+    } else if (command == 2) {
+        printf("\n\nThe LCM of %d and %d is %d.\n", num1, num2, lcm);
+    }
 
     printf("\n\n");
 }
