@@ -24,13 +24,13 @@ void show_command_list_page2(void);
 void extra_info(void);
 void exit_program(void);
 void page2(void);
-void clear_screen(void);
+void clear_terminal(void);
 
 int main(void)
 {
     if (just_opened = true) // clears any previous commands done in the terminal when you open the program
     {                       // there might be a better way to do this but I can't think of one currently
-        clear_screen();
+        clear_terminal();
         just_opened = false;
     }
 
@@ -40,7 +40,7 @@ int main(void)
         char command;
         printf("** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
-        scanf(" %c", &command); // input is stored as a character so '?' and 'h'/'H' can be read. might need to add a page system if I add enough functions
+        scanf(" %c", &command); // input is stored as a character so '?', 'c'/'C' and 'h'/'H' can be read.
 
         switch (command)
         {
@@ -81,6 +81,10 @@ int main(void)
         case 'H':
             extra_info();
             break;
+        case 'c':
+        case 'C':
+            clear_terminal();
+            break;
         case '>':
             page2();
             break;
@@ -98,14 +102,14 @@ int main(void)
 
 void page2(void)
 {
-    clear_screen();
+    clear_terminal();
 
-    while (1)
+    while (1) // just reuses the code from main()
     {
         char command;
         printf("** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
-        scanf(" %c", &command); // input is stored as a character so '?' and 'h'/'H' can be read. might need to add a page system if I add enough functions
+        scanf(" %c", &command);
 
         switch (command)
         {
@@ -122,6 +126,10 @@ void page2(void)
         case 'H':
             extra_info();
             break;
+        case 'c':
+        case 'C':
+            clear_terminal();
+            break;
         case '>':
             main();
             break;
@@ -137,12 +145,15 @@ void page2(void)
 
 void show_command_list_page1(void)
 {
-    clear_screen();
+    clear_terminal();
 
     char command;
 
     printf("**** PAGE 1 ****\n\n");
-    printf("Use either < or > to change pages");
+    printf("**   Commands to be use on PAGE 1   **");
+    printf("\nUse either < or > to change pages");
+    printf("\nPress 0 to exit command list");
+    printf("\nPress c to clear terminal");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a fibonacci sequence.");
     printf("\nPress 2 for a factorial sequence.");
@@ -152,8 +163,9 @@ void show_command_list_page1(void)
     printf("\nPress 6 for hex/octal conversion");
     printf("\nPress 7 for a GCD/LCM calculator");
     printf("\nPress 8 for a number reverser");
-    printf("\nPress 9 for temperature converter\n\n");
-    printf("Press 0 to return to main program\nUse < and > to change command list pages\n\n");
+    printf("\nPress 9 for temperature converter");
+    printf("\nPress 0 to exit program");
+    printf("\nUse < and > to change command list pages\n\n");
 
     while (1)
     {
@@ -180,20 +192,24 @@ void show_command_list_page1(void)
             break;
     }
 
-    clear_screen();
+    clear_terminal();
 }
 
 void show_command_list_page2(void)
 {
-    clear_screen();
+    clear_terminal();
 
     char command;
 
     printf("**** PAGE 2 ****\n\n");
-    printf("Use either < or > to change pages");
+    printf("**   Commands to be use on PAGE 2   **");
+    printf("\nUse either < or > to change pages");
+    printf("\nPress 0 to exit command list");
+    printf("\nPress c to clear terminal");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a number guessing game");
-    printf("\nPress 0 to return to main program\nUse < and > to change command list pages\n\n");
+    printf("\nPress 0 to exit the program");
+    printf("\nUse < and > to change command list pages\n\n");
 
     while (1)
     {
@@ -220,13 +236,13 @@ void show_command_list_page2(void)
             break;
     }
 
-    clear_screen();
+    clear_terminal();
 }
 
 
 void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
-    clear_screen();
+    clear_terminal();
 
     printf("The largest a number will possibly be represented as is 2^1023");
     printf("\nThe lowest is -2^1023 obviously");
@@ -252,7 +268,7 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
 
     switch (command)
     {
-    case 'y': // avoids case sensitivity
+    case 'y':
     case 'Y':
         printf("\n\nTerminating program...");
         exit(EXIT_SUCCESS);
@@ -267,11 +283,11 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     }
 }
 
-void clear_screen(void)
+void clear_terminal(void)
 {
     #ifdef _WIN32
         system("cls");  
     #else
-        system("clear");
+        system("clear"); // should make it so this works on UNIX
     #endif
 }
