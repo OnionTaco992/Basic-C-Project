@@ -36,6 +36,7 @@ void power_actions(void)
     default:
         break; // this shouldn't even be able to be triggered due to the while loop that checks for a valid input
     }
+
 }
 
 void exponential_math(void)
@@ -51,6 +52,8 @@ void exponential_math(void)
     sum = pow(input_number, exponent);
 
     printf("%.2lf to the power of %d = %.2lf", input_number, exponent, sum);
+
+    printf("\n\n");
 }
 
 void root_math(void)
@@ -83,4 +86,6 @@ void root_math(void)
         printf("\nThe %dth index of %.2lf is %.2lf.", index, input_number, sum);
         break;
     }
+
+    printf("\n\n");
 }

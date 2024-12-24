@@ -90,4 +90,6 @@ void lcm(void)
     lcm = sum / gcd;
 
     printf("\n\nThe lcm of %d and %d is %d.\n", num1, num2, lcm);
+
+    printf("\n\n");
 }

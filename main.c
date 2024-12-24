@@ -17,19 +17,28 @@
 
 #define MAX_ARRAY_LIMIT 100
 
+bool just_opened = true;
+
 void show_command_list_page1(void);
 void show_command_list_page2(void);
 void extra_info(void);
 void exit_program(void);
 void page2(void);
+void clear_screen(void);
 
 int main(void)
 {
+    if (just_opened = true) // clears any previous commands done in the terminal when you open the program
+    {                       // there might be a better way to do this but I can't think of one currently
+        clear_screen();
+        just_opened = false;
+    }
+
 
     while (1)
     {
         char command;
-        printf("\n\n** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
+        printf("** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
         scanf(" %c", &command); // input is stored as a character so '?' and 'h'/'H' can be read. might need to add a page system if I add enough functions
 
@@ -89,10 +98,12 @@ int main(void)
 
 void page2(void)
 {
+    clear_screen();
+
     while (1)
     {
         char command;
-        printf("\n\n** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
+        printf("** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
         scanf(" %c", &command); // input is stored as a character so '?' and 'h'/'H' can be read. might need to add a page system if I add enough functions
 
@@ -126,10 +137,12 @@ void page2(void)
 
 void show_command_list_page1(void)
 {
+    clear_screen();
+
     char command;
 
-    printf("\n**** PAGE 1 ****\n\n");
-    printf("\nUse either < or > to change pages");
+    printf("**** PAGE 1 ****\n\n");
+    printf("Use either < or > to change pages");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a fibonacci sequence.");
     printf("\nPress 2 for a factorial sequence.");
@@ -140,7 +153,7 @@ void show_command_list_page1(void)
     printf("\nPress 7 for a GCD/LCM calculator");
     printf("\nPress 8 for a number reverser");
     printf("\nPress 9 for temperature converter\n\n");
-    printf("\nPress 0 to return to main program\nUse < and > to change command list pages\n\n");
+    printf("Press 0 to return to main program\nUse < and > to change command list pages\n\n");
 
     while (1)
     {
@@ -158,7 +171,7 @@ void show_command_list_page1(void)
         case '0':
             break;
         case '<':
-            show_command_list_page2(); // if more than two pages are added make this go to the last one
+            show_command_list_page2();
             break;
         case '>':
             show_command_list_page2();
@@ -166,15 +179,18 @@ void show_command_list_page1(void)
         default:
             break;
     }
-    
+
+    clear_screen();
 }
 
 void show_command_list_page2(void)
 {
+    clear_screen();
+
     char command;
 
-    printf("\n**** PAGE 1 ****\n\n");
-    printf("\nUse either < or > to change pages");
+    printf("**** PAGE 2 ****\n\n");
+    printf("Use either < or > to change pages");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a number guessing game");
     printf("\nPress 0 to return to main program\nUse < and > to change command list pages\n\n");
@@ -198,16 +214,21 @@ void show_command_list_page2(void)
             show_command_list_page1();
             break;
         case '>':
-            show_command_list_page1(); // make this go to page 3 is that page is added
+            show_command_list_page1();
             break;
         default:
             break;
     }
+
+    clear_screen();
 }
+
 
 void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
-    printf("\nThe largest a number will possibly be represented as is 2^1023");
+    clear_screen();
+
+    printf("The largest a number will possibly be represented as is 2^1023");
     printf("\nThe lowest is -2^1023 obviously");
     printf("\nWhen asked for something like an exponent, it's stored as an integer");
     printf("\nSo don't make it a decimal");
@@ -215,6 +236,7 @@ void extra_info(void) // misc info that isn't too important
 
 void exit_program(void) // exit prompt to ensure that the user wants to exit
 {
+
     char command;
     printf("\nAre you sure? (Y/N): ");
 
@@ -243,4 +265,13 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
         return;
         break;
     }
+}
+
+void clear_screen(void)
+{
+    #ifdef _WIN32
+        system("cls");  
+    #else
+        system("clear");
+    #endif
 }

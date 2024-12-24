@@ -81,6 +81,8 @@ void celsius(double array[MAX_ARRAY_LIMIT], int array_size) // Converts celsius 
         conversion = array[i] + 273.15; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
+
+    printf("\n\n");
 }
 
 void fahrenheit(double array[MAX_ARRAY_LIMIT], int array_size) // Converts fahrenheit to celsius and kelvin
@@ -99,6 +101,8 @@ void fahrenheit(double array[MAX_ARRAY_LIMIT], int array_size) // Converts fahre
         conversion = (array[i] - 32) * 9 / 5 + 273.15; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
+
+    printf("\n\n");
 }
 
 void kelvin(double array[MAX_ARRAY_LIMIT], int array_size) // Converts kelvin to celsius and fahrenheit
@@ -117,4 +121,6 @@ void kelvin(double array[MAX_ARRAY_LIMIT], int array_size) // Converts kelvin to
         conversion = (array[i] - 273.15) * 9 /5 + 32; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
+
+    printf("\n\n");
 }

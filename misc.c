@@ -45,5 +45,5 @@ void number_reverser(void)
         printf("Reversed number %3d: %ld\n", i + 1, reversed);
     }
 
-    
+    printf("\n\n");
 }

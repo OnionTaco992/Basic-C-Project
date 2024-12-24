@@ -8,7 +8,33 @@
 
 #include "calculator.h"
 
-void calculator(void)
+void calculator(void) // Currently really basic, just using this for testing
 {
+    double num1, num2, ans;
+    char operator;
 
+    printf("\n\n** Calculator **\n\nEnter a number followed by an operator (+ - * /) then another number: ");
+    scanf("%lf %c %lf", &num1, &operator, &num2);
+    
+    switch (operator)
+    {
+        case '+':
+            ans = num1 + num2;
+            break;
+        case '-':
+            ans = num1 - num2;
+            break;
+        case '*':
+            ans = num1 * num2;
+            break;
+        case '/':
+            ans = num1 / num2;
+            break;
+        default:
+            printf("\n\nInvalid operator.");
+    }
+
+    printf("\n\n%lf %c %lf = %lf", num1, operator, num2, ans);
+
+    printf("\n\n");
 }

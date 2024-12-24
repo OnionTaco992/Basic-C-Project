@@ -88,6 +88,8 @@ void integer_to_hex_octal(void)
     {
         printf("\nIndex %3d: %u = %o ", i + 1, list[i], list[i]);
     }
+
+    printf("\n\n");
 }
 
 void hex_to_integer_octal(void)
@@ -131,6 +133,8 @@ void hex_to_integer_octal(void)
     {
         printf("\nIndex %3d: %x = %o ", i + 1, list[i], list[i]);
     }
+
+    printf("\n\n");
 }
 
 void octal_to_integer_hex(void)
@@ -174,4 +178,6 @@ void octal_to_integer_hex(void)
     {
         printf("\nIndex %3d: %o = %x ", i + 1, list[i], list[i]);
     }
+
+    printf("\n\n");
 }
