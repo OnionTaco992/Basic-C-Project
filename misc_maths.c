@@ -7,31 +7,27 @@
 
 #include "misc_maths.h"
 
-
-
 void fibonacci_sequence(void)
 {
     int length, i;
-    double num1 = 0, num2 = 1, sum;
+    double num1, num2, sum;
 
-    printf("\n** Fibonacci **\nEnter the length of the sequence: ");
+    printf("\n\n** Fibonacci **\n\n");
+    printf("Enter the length of the sequence: ");
     scanf("%d", &length);
+    printf("Enter the number to start at: ");
+    scanf("%lf", &num1);
 
-    if (length == 1)
-    {
-        printf("\n0");
-    }
-    else
-    {
-        printf("\n0 1 ");
+    num2 = (num1 + 1);
 
-        for (i = 0; i < length - 2; i++)
-        {
-            sum = num1 + num2;
-            printf("%.0lf ", sum);
-            num1 = num2;
-            num2 = sum;
-        }
+    printf("%.0lf ", num1);
+
+    for (i = 0; i < length; i++)
+    {
+        sum = num1 + num2;
+        printf("%.0lf ", sum);
+        num1 = num2;
+        num2 = sum;
     }
 
     printf("\n\n");

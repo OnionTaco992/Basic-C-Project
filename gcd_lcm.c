@@ -2,6 +2,7 @@
 // This might be able to be improved
 
 #include <stdio.h>
+
 #include "gcd_lcm.h"
 
 void gcd_lcm_calculator(void)

@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "guessing_game.h"
+
 #include "rng.h"
 
 void guessing_game(void)
