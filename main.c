@@ -14,6 +14,7 @@
 #include "misc.h"
 #include "temperature_conversion.h"
 #include "guessing_game.h"
+#include "length_conversion.h"
 
 #define MAX_ARRAY_LIMIT 100
 
@@ -115,6 +116,9 @@ void page2(void)
         case '1':
             guessing_game();
             break;
+        case '2':
+            convert_choice();
+            break;
         case '0':
             exit_program();
             break;
@@ -207,6 +211,7 @@ void show_command_list_page2(void)
     printf("\nPress c to clear terminal");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a number guessing game");
+    printf("\nPress 2 for a length conversion (CURRENTLY UNFINISHED DON'T USE!!!!!)");
     printf("\nPress 0 to exit the program");
     printf("\nUse < and > to change command list pages\n\n");
 
@@ -242,7 +247,7 @@ void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
     clear_terminal();
 
-    printf("The largest a number will possibly be represented as is 2^1023");
+    printf("\nThe largest a number will possibly be represented as is 2^1023");
     printf("\nThe lowest is -2^1023 obviously");
     printf("\nWhen asked for something like an exponent, it's stored as an integer");
     printf("\nSo don't make it a decimal");
@@ -283,9 +288,9 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
 
 void clear_terminal(void)
 {
-#ifdef _WIN32
-    system("cls");
-#else
-    system("clear"); // should make it so this works on UNIX
-#endif
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear"); // should make it so this works on UNIX
+    #endif
 }
