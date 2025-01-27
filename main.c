@@ -14,7 +14,7 @@
 #include "misc.h"
 #include "temperature_conversion.h"
 #include "guessing_game.h"
-#include "length_conversion.h"
+#include "prime.h"
 
 #define MAX_ARRAY_LIMIT 100
 
@@ -117,7 +117,7 @@ void page2(void)
             guessing_game();
             break;
         case '2':
-            convert_choice();
+            is_prime();
             break;
         case '0':
             exit_program();
@@ -211,7 +211,7 @@ void show_command_list_page2(void)
     printf("\nPress c to clear terminal");
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a number guessing game");
-    printf("\nPress 2 for a length conversion (CURRENTLY UNFINISHED DON'T USE!!!!!)");
+    printf("\nPress 2 for a prime number calculator");
     printf("\nPress 0 to exit the program");
     printf("\nUse < and > to change command list pages\n\n");
 
@@ -273,7 +273,8 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     {
     case 'y':
     case 'Y':
-        printf("\n\nTerminating program...");
+        clear_terminal();
+        printf("Program terminated...\n");
         exit(EXIT_SUCCESS);
         break;
     case 'n':

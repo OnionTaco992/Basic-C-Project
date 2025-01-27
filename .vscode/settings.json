@@ -59,6 +59,8 @@
   "files.associations": {
     "time.h": "c",
     "stdio.h": "c",
-    "temperature_conversion.h": "c"
+    "temperature_conversion.h": "c",
+    "algorithm": "c",
+    "format": "c"
   }
 }

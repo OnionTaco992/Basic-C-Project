@@ -37,14 +37,14 @@ void guessing_game(void)
         } else if (guess >= high_quarter) {
             printf("\nWay to high.");
         } else if (guess == random_number) {
-            printf("You won in %d guesses!", original_count - count + 1);
+            printf("\n\n** You won in %d guesses! **", original_count - count + 1);
             return;
         }
         count--;
         printf("\nYou have %d guesses left.", count);
     }
 
-    printf("\n\nYou lost. The answer was %lf.", random_number);
+    printf("\n\n** You lost. The answer was %lf. **", random_number);
 
     printf("\n\n");
 }

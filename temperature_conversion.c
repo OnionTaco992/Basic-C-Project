@@ -70,13 +70,13 @@ void celsius(double array[MAX_ARRAY_LIMIT], int array_size) // Converts celsius 
     int i;
     double conversion;
 
-    printf("\n* fahrenheit *\n");
+    printf("\n* Fahrenheit *\n");
     for (i = 0; i < array_size; i++) {
         conversion = (array[i] * 9 / 5) + 32; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
 
-    printf("\n* kelvin *\n");
+    printf("\n\n* Kelvin *\n");
     for (i = 0; i < array_size; i++) {
         conversion = array[i] + 273.15; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
@@ -90,13 +90,13 @@ void fahrenheit(double array[MAX_ARRAY_LIMIT], int array_size) // Converts fahre
     int i;
     double conversion;
 
-    printf("\n* celsius *\n");
+    printf("\n* Celsius *\n");
     for (i = 0; i < array_size; i++) {
         conversion = (array[i] - 32) * 9 / 5; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
 
-    printf("\n* kelvin *\n");
+    printf("\n\n* Kelvin *\n");
     for (i = 0; i < array_size; i++) {
         conversion = (array[i] - 32) * 9 / 5 + 273.15; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
@@ -110,13 +110,13 @@ void kelvin(double array[MAX_ARRAY_LIMIT], int array_size) // Converts kelvin to
     int i;
     double conversion;
 
-    printf("\n* celsius *\n");
+    printf("\n* Celsius *\n");
     for (i = 0; i < array_size; i++) {
         conversion = array[i] - 273.15; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
     }
 
-    printf("\n* fahrenheit *\n");
+    printf("\n\n* Fahrenheit *\n");
     for (i = 0; i < array_size; i++) {
         conversion = (array[i] - 273.15) * 9 /5 + 32; 
         printf("\nIndex %d: %.2lf = %.2lf", i + 1, array[i], conversion);
