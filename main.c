@@ -19,6 +19,7 @@
 #define MAX_ARRAY_LIMIT 100
 
 bool just_opened = true;
+int add_newlinechars = 0;
 
 void show_command_list_page1(void);
 void show_command_list_page2(void);
@@ -29,15 +30,26 @@ void clear_terminal(void);
 
 int main(void)
 {
-    if (just_opened = true) // clears any previous commands done in the terminal when you open the program
+    if (just_opened = true) // clears the terminal when you execute the program so you don't need to manually do it
     {                       // there might be a better way to do this but I can't think of one currently
-        clear_terminal();
+        clear_terminal();   // and this works completely fine anyways (at least from what I can tell)
         just_opened = false;
     }
 
     while (1)
     {
         char command;
+
+        if (add_newlinechars == 1)
+        {
+            printf("\n\n");              // makes it so it automatically makes two new line characters when you finish something
+        }                                // and return back to the main() function
+        else if (add_newlinechars == 0)  // however if you clear the terminal it doesn't create any new line characters
+        {
+            add_newlinechars = 1;
+        }
+        
+
         printf("** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
         scanf(" %c", &command); // input is stored as a character so '?', 'c'/'C' and 'h'/'H' can be read.
@@ -86,9 +98,11 @@ int main(void)
             clear_terminal();
             break;
         case '>':
+            add_newlinechars = 0;
             page2();
             break;
         case '<':
+            add_newlinechars = 0;
             page2(); // make this go to the last page if a third page is added
             break;
         default:
@@ -107,6 +121,16 @@ void page2(void)
     while (1) // just reuses the code from main()
     {
         char command;
+
+        if (add_newlinechars == 1)
+        {
+            printf("\n\n");
+        }
+        else if (add_newlinechars == 0)
+        {
+            add_newlinechars = 1;
+        }
+
         printf("** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
         scanf(" %c", &command);
@@ -289,9 +313,6 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
 
 void clear_terminal(void)
 {
-    #ifdef _WIN32
-        system("cls");
-    #else
-        system("clear"); // should make it so this works on UNIX
-    #endif
+    add_newlinechars = 0;
+    system("cls");
 }

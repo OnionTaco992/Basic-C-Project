@@ -91,8 +91,6 @@ void find_mean(void)
     {
         printf("No numbers were entered.\n");
     }
-
-    printf("\n\n");
 }
 
 int compare(const void *a, const void *b)
@@ -146,8 +144,6 @@ void find_median(void)
     }
 
     printf("The median is: %.2lf\n", median);
-
-    printf("\n\n");
 }
 
 void find_mode(void)
@@ -205,8 +201,6 @@ void find_mode(void)
     {
         printf("The mode is: %.2lf which appeared %d times\n", mode, max_count);
     }
-
-    printf("\n\n");
 }
 
 void find_range(void)
@@ -249,6 +243,4 @@ void find_range(void)
     }
 
     printf("\nThe range of the list is %.0lf", highest - lowest);
-
-    printf("\n\n");
 }

@@ -45,6 +45,4 @@ void guessing_game(void)
     }
 
     printf("\n\n** You lost. The answer was %lf. **", random_number);
-
-    printf("\n\n");
 }

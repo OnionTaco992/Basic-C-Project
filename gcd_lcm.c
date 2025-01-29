@@ -52,6 +52,4 @@ void gcd_lcm_calculator(void)
     } else if (command == 2) {
         printf("\n\nThe LCM of %d and %d is %d.\n", num1, num2, lcm);
     }
-
-    printf("\n\n");
 }

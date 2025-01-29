@@ -12,6 +12,9 @@ void is_prime(void)
     int i, n, m, count = 0;
     char ch;
 
+    printf("** Prime Number Calculator **");
+    printf("\nDetermines if a number is prime or not.");
+
     printf("\n\nEnter a list of numbers, up to %d numbers: ", MAX_ARRAY_LIMIT);
 
     for (i = 0; i < MAX_ARRAY_LIMIT; i++)
@@ -63,6 +66,4 @@ void is_prime(void)
     {
         printf("\n%d.   %2.0ld: %s", i + 1, list[i], is_num_prime[i]);
     }
-
-    printf("\n\n");
 }

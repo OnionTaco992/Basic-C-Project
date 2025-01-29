@@ -35,6 +35,4 @@ void calculator(void) // Currently really basic, just using this for testing
     }
 
     printf("\n\n%lf %c %lf = %lf", num1, operator, num2, ans);
-
-    printf("\n\n");
 }

@@ -29,8 +29,6 @@ void fibonacci_sequence(void)
         num1 = num2;
         num2 = sum;
     }
-
-    printf("\n\n");
 }
 
 void factorial_sequence(void)
@@ -60,6 +58,4 @@ void factorial_sequence(void)
     {
         printf("\n%.0lf", sum);
     }
-
-    printf("\n\n");
 }

@@ -72,8 +72,6 @@ void rng(void)
         }
         
     }
-
-    printf("\n\n");
 }
 
 double generate_random_number(double min, double max)
