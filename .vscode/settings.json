@@ -61,6 +61,7 @@
     "stdio.h": "c",
     "temperature_conversion.h": "c",
     "algorithm": "c",
-    "format": "c"
+    "format": "c",
+    "random_path_generator.h": "c"
   }
 }

@@ -2,6 +2,8 @@
 #include <math.h>
 #include <string.h>
 
+#include "prime.h"
+
 #define MAX_ARRAY_LIMIT 100
 
 void is_prime(void)

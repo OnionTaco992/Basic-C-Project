@@ -15,6 +15,9 @@
 #include "temperature_conversion.h"
 #include "guessing_game.h"
 #include "prime.h"
+#include "random_path_generator.h"
+
+#include "tools.h"
 
 #define MAX_ARRAY_LIMIT 100
 
@@ -25,16 +28,22 @@ void show_command_list_page1(void);
 void show_command_list_page2(void);
 void extra_info(void);
 void exit_program(void);
+void page1(void);
 void page2(void);
 void clear_terminal(void);
 
-int main(void)
+int main()
 {
-    if (just_opened = true) // clears the terminal when you execute the program so you don't need to manually do it
-    {                       // there might be a better way to do this but I can't think of one currently
-        clear_terminal();   // and this works completely fine anyways (at least from what I can tell)
-        just_opened = false;
-    }
+    // changed this because I am going to try and add a launch command paramater system
+
+    page1();
+
+    return 0;
+}
+
+void page1(void)
+{
+    
 
     while (1)
     {
@@ -42,13 +51,12 @@ int main(void)
 
         if (add_newlinechars == 1)
         {
-            printf("\n\n");              // makes it so it automatically makes two new line characters when you finish something
-        }                                // and return back to the main() function
-        else if (add_newlinechars == 0)  // however if you clear the terminal it doesn't create any new line characters
+            prntsp(); // makes it so it automatically makes two new line characters when you finish something
+        } // and return back to the main() function
+        else if (add_newlinechars == 0) // however if you clear the terminal it doesn't create any new line characters
         {
             add_newlinechars = 1;
         }
-        
 
         printf("** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
 
@@ -110,8 +118,6 @@ int main(void)
             break;
         }
     }
-
-    return 0;
 }
 
 void page2(void)
@@ -124,7 +130,7 @@ void page2(void)
 
         if (add_newlinechars == 1)
         {
-            printf("\n\n");
+            prntsp();
         }
         else if (add_newlinechars == 0)
         {
@@ -143,6 +149,9 @@ void page2(void)
         case '2':
             is_prime();
             break;
+        case '3':
+            random_path_generator();
+            break;
         case '0':
             exit_program();
             break;
@@ -158,10 +167,10 @@ void page2(void)
             clear_terminal();
             break;
         case '>':
-            main();
+            page1();
             break;
         case '<':
-            main();
+            page1();
             break;
         default:
             printf("Invalid input. Enter a valid input.\n");
@@ -236,6 +245,7 @@ void show_command_list_page2(void)
     printf("\nPress h to display extra info (you don't really need to do this)\n");
     printf("\nPress 1 for a number guessing game");
     printf("\nPress 2 for a prime number calculator");
+    printf("\nPress 3 for a random path generator");
     printf("\nPress 0 to exit the program");
     printf("\nUse < and > to change command list pages\n\n");
 

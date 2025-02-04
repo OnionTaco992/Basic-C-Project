@@ -74,7 +74,24 @@ void rng(void)
     }
 }
 
+// RNG that returns an int from two doubles
+
 double generate_random_number(double min, double max)
+{
+    static int seeded = 0;
+
+    if (!seeded)
+    {
+        srand(time(NULL) ^ getpid());
+        seeded = 1;
+    }
+
+    return (rand() % (int)(max - min + 1)) + (int)min;
+}
+
+// same thing as above but requires two ints rather than doubles
+
+int generate_random_number2(int min, int max)
 {
     static int seeded = 0;
 

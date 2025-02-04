@@ -1,11 +1,11 @@
 // Misc functions. Anything that I don't feel like putting in
 // A specific .c file will just go here
 // And if this file manages to get large enough,
-// I'll just make a misc2.c ;)
+// I'll just make a misc2.c
 
 #include <stdio.h>
 
-#define MAX_ARRAY_LIMIT 100
+#define MAX_ARRAY_LIMIT 100 + 1
 
 void number_reverser(void)
 {
