@@ -1,6 +1,8 @@
 // Main file obviously. Just asks the user what they want to do and sends them to the respective function
 // Other than that it contains the info functions (command list, extra misc info) and the exit function
 
+// TODO add launch parameters
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -34,7 +36,7 @@ void clear_terminal(void);
 
 int main()
 {
-    // changed this because I am going to try and add a launch command paramater system
+    
 
     page1();
 
