@@ -44,11 +44,11 @@ void gcd_lcm_calculator(void)
     }
 
     gcd = m;
-    sum = num1 * num2;
+    sum = num1 * num2; // calculates both the gcd and lcm as the gcd is required for the lcm anyways
     lcm = sum / gcd;
 
     if (command == 1) {
-        printf("\n\nThe GCD of %d and %d is %d.\n", num1, num2, gcd);
+        printf("\n\nThe GCD of %d and %d is %d.\n", num1, num2, gcd); // changes what it prints depending on what you chose
     } else if (command == 2) {
         printf("\n\nThe LCM of %d and %d is %d.\n", num1, num2, lcm);
     }

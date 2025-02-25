@@ -6,22 +6,29 @@
 #include "rng.h"
 #include "tools.h"
 
-void change_background(char *background);
-void change_path(char *path);
-void change_path_amount(int *amount);
+void change_settings(char *background, char *path, int *amount);
 
 void random_path_generator(void)
 {
-    int grid_x, grid_y, command, start[2], current[2], turns, i, j;
+    int grid_x = 0, grid_y = 0, command, start[2], current[2], turns, i, j;
     int prev[2], options, turn_amount;
-    char background, path_symbol;
+    char background, path_symbol, repeat;
 
-    printf("\n\n** Random Path Generator **\n\n");
-    printf("Enter the x axis size: ");
-    scanf("%d", &grid_x);
+    printf("\n\n** Random Path Generator **\n");
+    printf("** It is recommnded to run this with the window maximised **\n\n");
+    printf("Enter the X and Y axis: ");
+    while (1)
+    {
+        printf("\n\nEnter your choice: ");
+        scanf("%d %d", &grid_x, &grid_y);
 
-    printf("\n\nEnter the y axis size: ");
-    scanf("%d", &grid_y);
+        if (grid_x, grid_y)
+        {
+            break;
+        }
+
+        printf("Invalid input.");
+    }
 
     printf("\n\nEnter 2 to change options\nPress 1 to continue");
     while (1)
@@ -34,7 +41,7 @@ void random_path_generator(void)
             break;
         }
 
-        printf("Invalid input.");
+        printf("\aInvalid input.");
     }
 
     turns = grid_x * grid_y;
@@ -47,9 +54,7 @@ void random_path_generator(void)
             turns /= 2;
             break;
         case 2:
-            change_background(&background); // lets user change the character used for both the background and path
-            change_path(&path_symbol);
-            change_path_amount(&turn_amount);
+            change_settings(&background, &path_symbol, &turn_amount); // lets user change the character used for both the background and path
             turns /= turn_amount;
             break;
         default:
@@ -105,7 +110,7 @@ void random_path_generator(void)
     default:
         break; // switch can't get here as the previous loop prevents invalid inputs
     }
-
+    
     prntsp();
 
     printf("Start coordinates: [%d, %d]\n\n", start[0], start[1]); // for some reason getting rid of this crashes the program????
@@ -201,23 +206,36 @@ void random_path_generator(void)
         free(grid[i]);
     }
     free(grid);
+
+    printf("Generate another grid? Y/N: ");
+    while (1) // makes sure the user enters a valid input
+    {
+        scanf(" %c", &repeat);
+
+        switch (repeat)
+        {
+            case 'y':
+            case 'Y':
+                random_path_generator();
+                break;
+            case 'n':
+            case 'N':
+                break;
+            default:
+            printf("\nInvalid input. Enter a valid input: ");
+        }
+    }
 }
 
-void change_background(char *background) // changes the background symbol
-{                            // in it's own function so the main function looks a bit cleaner
+void change_settings(char *background, char *path, int *amount) // changes the background symbol
+{                                                               // in it's own function so the main function looks a bit cleaner
     printf("\n\nEnter the character to use for the background: ");
-    scanf("%c", &background);
-}
+    scanf(" %c", &background);
 
-void change_path(char *path) // same as above but for the path symbol
-{
     printf("\n\nEnter the character to use for the path: ");
-    scanf("%c", &path);
-}
+    scanf(" %c", &path);
 
-void change_path_amount(int *amount)
-{
     printf("\n\nEnter a number. The smaller the number the more space it will take up."
-           "\n\nEnter the percent: ");
-    scanf("%d", &amount);
+           "\nEnter the percent: ");
+    scanf(" %d", &amount);
 }

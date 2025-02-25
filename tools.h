@@ -2,5 +2,6 @@
 #define TOOLS_H
 
 void prntsp(void);
+void cls(void);
 
 #endif

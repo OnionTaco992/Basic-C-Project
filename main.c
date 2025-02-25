@@ -23,7 +23,6 @@
 
 #define MAX_ARRAY_LIMIT 100
 
-bool just_opened = true;
 int add_newlinechars = 0;
 
 void show_command_list_page1(void);
@@ -32,14 +31,14 @@ void extra_info(void);
 void exit_program(void);
 void page1(void);
 void page2(void);
-void clear_terminal(void);
+void clear_terminal_main(void);
 
 int main()
 {
-    
+    system("cls");
 
-    page1();
-
+    page1(); // page1() is in it's own function as I plan on adding launch parameters and this will
+             // make it look a bit cleaner
     return 0;
 }
 
@@ -53,8 +52,8 @@ void page1(void)
 
         if (add_newlinechars == 1)
         {
-            prntsp(); // makes it so it automatically makes two new line characters when you finish something
-        } // and return back to the main() function
+            prntsp();                   // makes it so it automatically makes two new line characters when you finish something
+        }                               // and return back to the main() function
         else if (add_newlinechars == 0) // however if you clear the terminal it doesn't create any new line characters
         {
             add_newlinechars = 1;
@@ -105,7 +104,7 @@ void page1(void)
             break;
         case 'c':
         case 'C':
-            clear_terminal();
+            clear_terminal_main();
             break;
         case '>':
             add_newlinechars = 0;
@@ -116,7 +115,8 @@ void page1(void)
             page2(); // make this go to the last page if a third page is added
             break;
         default:
-            printf("Invalid input. Enter a valid input.\n");
+            clear_terminal_main();
+            printf("\aInvalid input. Enter a valid input.\n");
             break;
         }
     }
@@ -124,7 +124,7 @@ void page1(void)
 
 void page2(void)
 {
-    clear_terminal();
+    clear_terminal_main();
 
     while (1) // just reuses the code from main()
     {
@@ -166,7 +166,7 @@ void page2(void)
             break;
         case 'c':
         case 'C':
-            clear_terminal();
+            clear_terminal_main();
             break;
         case '>':
             page1();
@@ -183,7 +183,7 @@ void page2(void)
 
 void show_command_list_page1(void)
 {
-    clear_terminal();
+    clear_terminal_main();
 
     char command;
 
@@ -230,12 +230,12 @@ void show_command_list_page1(void)
         break;
     }
 
-    clear_terminal();
+    clear_terminal_main();
 }
 
 void show_command_list_page2(void)
 {
-    clear_terminal();
+    clear_terminal_main();
 
     char command;
 
@@ -276,12 +276,12 @@ void show_command_list_page2(void)
         break;
     }
 
-    clear_terminal();
+    clear_terminal_main();
 }
 
 void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
-    clear_terminal();
+    clear_terminal_main();
 
     printf("\nThe largest a number will possibly be represented as is 2^1023");
     printf("\nThe lowest is -2^1023 obviously");
@@ -309,7 +309,7 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     {
     case 'y':
     case 'Y':
-        clear_terminal();
+        clear_terminal_main();
         printf("Program terminated...\n");
         exit(EXIT_SUCCESS);
         break;
@@ -323,8 +323,8 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     }
 }
 
-void clear_terminal(void)
+void clear_terminal_main(void)
 {
     add_newlinechars = 0;
-    system("cls");
+    cls();
 }

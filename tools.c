@@ -10,3 +10,8 @@ void prntsp(void)
 {
     printf("\n\n");
 }
+
+void cls(void)
+{
+    system("cls");
+}
