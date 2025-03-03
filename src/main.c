@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <string.h>
+#include <windows.h>
 
 #include "misc_maths.h"
 #include "hex_octal_conversion.h"
@@ -33,9 +35,25 @@ void page1(void);
 void page2(void);
 void clear_terminal_main(void);
 
-int main()
+int main(int argc, char *argv[])
 {
     system("cls");
+
+    for (int i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i], "-open_command_page_one") == 0)
+        {
+            show_command_list_page1();
+        }
+        else if (strcmp(argv[i], "-open_command_page_two") == 0)
+        {
+            show_command_list_page2();
+        }
+        else if (strcmp(argv[i], "-Extra_Info") == 0)
+        {
+            extra_info();
+        }
+    }
 
     page1(); // page1() is in it's own function as I plan on adding launch parameters and this will
              // make it look a bit cleaner
@@ -44,7 +62,6 @@ int main()
 
 void page1(void)
 {
-    
 
     while (1)
     {
@@ -52,8 +69,8 @@ void page1(void)
 
         if (add_newlinechars == 1)
         {
-            prntsp();                   // makes it so it automatically makes two new line characters when you finish something
-        }                               // and return back to the main() function
+            prntsp(); // makes it so it automatically makes two new line characters when you finish something
+        } // and return back to the main() function
         else if (add_newlinechars == 0) // however if you clear the terminal it doesn't create any new line characters
         {
             add_newlinechars = 1;
@@ -96,11 +113,13 @@ void page1(void)
             exit_program();
             break;
         case '?':
-            show_command_list_page1();
+            clear_terminal_main();
+            system("start cmd /k \"multi.exe -open_command_page_one\"");
             break;
         case 'h': // avoids case sensitivity
         case 'H':
-            extra_info();
+            clear_terminal_main();
+            system("start cmd /k \"multi.exe -Extra_Info\"");
             break;
         case 'c':
         case 'C':
@@ -158,11 +177,13 @@ void page2(void)
             exit_program();
             break;
         case '?':
-            show_command_list_page2();
+            clear_terminal_main();
+            system("start cmd /k \"multi.exe -open_command_page_two\"");
             break;
         case 'h':
         case 'H':
-            extra_info();
+            clear_terminal_main();
+            system("start cmd /k \"multi.exe -Extra_Info\"");
             break;
         case 'c':
         case 'C':
@@ -183,12 +204,14 @@ void page2(void)
 
 void show_command_list_page1(void)
 {
-    clear_terminal_main();
+    SetConsoleTitle("Multi_Commands");
+
+    cls();
 
     char command;
 
     printf("**** PAGE 1 ****\n\n");
-    printf("**   Commands to be use on PAGE 1   **");
+    printf("**   Commands to be used on PAGE 1   **\n");
     printf("\nUse either < or > to change pages");
     printf("\nPress 0 to exit command list");
     printf("\nPress c to clear terminal");
@@ -219,6 +242,17 @@ void show_command_list_page1(void)
     switch (command)
     {
     case '0':
+        HWND hwnd = FindWindow(NULL, "Multi_Commands");
+
+        if (hwnd)
+        {
+            SendMessage(hwnd, WM_CLOSE, 0, 0);
+            printf("Window closed successfully.\n"); // Why the hell do I need all this just to close a damn window
+        }
+        else
+        {
+            printf("Window not found.\n");
+        }
         break;
     case '<':
         show_command_list_page2();
@@ -229,13 +263,13 @@ void show_command_list_page1(void)
     default:
         break;
     }
-
-    clear_terminal_main();
 }
 
 void show_command_list_page2(void)
 {
-    clear_terminal_main();
+    SetConsoleTitle("Multi_Commands");
+
+    cls();
 
     char command;
 
@@ -265,6 +299,17 @@ void show_command_list_page2(void)
     switch (command)
     {
     case '0':
+        HWND hwnd = FindWindow(NULL, "Multi_Commands");
+
+        if (hwnd)
+        {
+            SendMessage(hwnd, WM_CLOSE, 0, 0);
+            printf("Window closed successfully.\n"); // Once again why the hell do I need all this just to close a damn window
+        }
+        else
+        {
+            printf("Window not found.\n");
+        }
         break;
     case '<':
         show_command_list_page1();
@@ -275,18 +320,20 @@ void show_command_list_page2(void)
     default:
         break;
     }
-
-    clear_terminal_main();
 }
 
 void extra_info(void) // misc info that isn't too important
 {                     // might add more to it at some point
-    clear_terminal_main();
+    SetConsoleTitle("Extra_Info");
 
-    printf("\nThe largest a number will possibly be represented as is 2^1023");
+    printf("The largest a number will possibly be represented as is 2^1023");
     printf("\nThe lowest is -2^1023 obviously");
     printf("\nWhen asked for something like an exponent, it's stored as an integer");
     printf("\nSo don't make it a decimal");
+
+    while (1) // inf loop so the window doesn't auto close
+    {
+    }
 }
 
 void exit_program(void) // exit prompt to ensure that the user wants to exit
@@ -310,6 +357,19 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     case 'y':
     case 'Y':
         clear_terminal_main();
+
+        HWND mu_cmd = FindWindow(NULL, "Multi_Commands");
+        HWND ex_info = FindWindow(NULL, "Extra_Info");
+
+        if (mu_cmd)
+        {
+            SendMessage(mu_cmd, WM_CLOSE, 0, 0);
+        }
+        if (ex_info)
+        {
+            SendMessage(ex_info, WM_CLOSE, 0, 0);
+        }
+
         printf("Program terminated...\n");
         exit(EXIT_SUCCESS);
         break;

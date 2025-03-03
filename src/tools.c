@@ -5,6 +5,7 @@
 // but i also like keeping it in easy to find rng.c file
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void prntsp(void)
 {
