@@ -11,7 +11,7 @@ void change_settings(char *background, char *path, int *amount);
 void random_path_generator(void)
 {
     int grid_x = 0, grid_y = 0, command, start[2], current[2], turns, i, j;
-    int prev[2], options, turn_amount;
+    int prev[2], options, turn_amount, exit_val = 0;
     char background, path_symbol, repeat;
 
     printf("\n\n** Random Path Generator **\n");
@@ -220,9 +220,15 @@ void random_path_generator(void)
                 break;
             case 'n':
             case 'N':
+                exit_val = 1;
                 break;
             default:
             printf("\nInvalid input. Enter a valid input: ");
+        }
+
+        if (exit_val == 1)
+        {
+            break;
         }
     }
 }

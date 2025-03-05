@@ -62,6 +62,10 @@ int main(int argc, char *argv[])
         {
             string_writer();
         }
+        else if (strcmp(argv[i], "-olpl") == 0)
+        {
+            strng_launch_thing();
+        }
     }
 
     page1(); // page1() is in it's own function as I plan on adding launch parameters and this will
@@ -188,8 +192,15 @@ void page2(void)
             random_path_generator();
             break;
         case '4':
-            system("start cmd /k \"ot_tools.exe -open_string_writer\""); // opens it's own window because I can't yet think of a way to let the user
-            break;                                                       // close it without fully closing the program
+            int i;
+            add_newlinechars = 0;
+            system("start cmd /k \"ot_tools.exe -open_string_writer\"");    // opens it's own window because I can't yet think of a way to let the user
+            for (i = 0; i < 4; i++)                                         // close it without fully closing the program
+            {
+                printf("\033[A");
+                printf("\033[K");
+            }
+            break;
         case '0':
             exit_program();
             break;
