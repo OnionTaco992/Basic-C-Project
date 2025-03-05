@@ -197,7 +197,7 @@ void page2(void)
             system("start cmd /k \"ot_tools.exe -open_string_writer\"");    // opens it's own window because I can't yet think of a way to let the user
             for (i = 0; i < 4; i++)                                         // close it without fully closing the program
             {
-                printf("\033[A");
+                printf("\033[A"); // removes the previous ** Page 2 ** message but doesn't get rid of anything else
                 printf("\033[K");
             }
             break;
