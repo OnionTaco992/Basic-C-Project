@@ -20,6 +20,7 @@
 #include "guessing_game.h"
 #include "prime.h"
 #include "random_path_generator.h"
+#include "string_writer.h"
 
 #include "tools.h"
 
@@ -53,6 +54,14 @@ int main(int argc, char *argv[])
         {
             extra_info();
         }
+        else if (strcmp(argv[i], "-page_two") == 0)
+        {
+            page2();
+        }
+        else if (strcmp(argv[i], "-open_string_writer") == 0)
+        {
+            string_writer();
+        }
     }
 
     page1(); // page1() is in it's own function as I plan on adding launch parameters and this will
@@ -62,6 +71,7 @@ int main(int argc, char *argv[])
 
 void page1(void)
 {
+    clear_terminal_main();
 
     while (1)
     {
@@ -76,7 +86,9 @@ void page1(void)
             add_newlinechars = 1;
         }
 
-        printf("** Page 1 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
+        char start_message[] = {"** Page 1 **\n\nPress ? for a list of commands.\nWhat do you want to do?: "};
+
+        write_text(start_message, 10);
 
         scanf(" %c", &command); // input is stored as a character so '?', 'c'/'C' and 'h'/'H' can be read.
 
@@ -114,12 +126,12 @@ void page1(void)
             break;
         case '?':
             clear_terminal_main();
-            system("start cmd /k \"multi.exe -open_command_page_one\"");
+            system("start cmd /k \"ot_tools.exe -open_command_page_one\"");
             break;
         case 'h': // avoids case sensitivity
         case 'H':
             clear_terminal_main();
-            system("start cmd /k \"multi.exe -Extra_Info\"");
+            system("start cmd /k \"ot_tools.exe -Extra_Info\"");
             break;
         case 'c':
         case 'C':
@@ -145,7 +157,7 @@ void page2(void)
 {
     clear_terminal_main();
 
-    while (1) // just reuses the code from main()
+    while (1)
     {
         char command;
 
@@ -158,7 +170,9 @@ void page2(void)
             add_newlinechars = 1;
         }
 
-        printf("** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: ");
+        char open_message[] = {"** Page 2 **\n\nPress ? for list of commands.\nWhat do you want to do?: "};
+
+        write_text(open_message, 10);
 
         scanf(" %c", &command);
 
@@ -173,26 +187,31 @@ void page2(void)
         case '3':
             random_path_generator();
             break;
+        case '4':
+            system("start cmd /k \"ot_tools.exe -open_string_writer\""); // opens it's own window because I can't yet think of a way to let the user
+            break;                                                       // close it without fully closing the program
         case '0':
             exit_program();
             break;
         case '?':
             clear_terminal_main();
-            system("start cmd /k \"multi.exe -open_command_page_two\"");
+            system("start cmd /k \"ot_tools.exe -open_command_page_two\"");
             break;
         case 'h':
         case 'H':
             clear_terminal_main();
-            system("start cmd /k \"multi.exe -Extra_Info\"");
+            system("start cmd /k \"ot_tools.exe -Extra_Info\"");
             break;
         case 'c':
         case 'C':
             clear_terminal_main();
             break;
         case '>':
+            add_newlinechars = 0;
             page1();
             break;
         case '<':
+            add_newlinechars = 0;
             page1();
             break;
         default:
@@ -204,7 +223,7 @@ void page2(void)
 
 void show_command_list_page1(void)
 {
-    SetConsoleTitle("Multi_Commands");
+    SetConsoleTitle("OT_Tools_Commands");
 
     cls();
 
@@ -236,13 +255,13 @@ void show_command_list_page1(void)
         {
             break;
         }
-        printf("\nInvalid input. ");
+        printf("\n\aInvalid input. ");
     }
 
     switch (command)
     {
     case '0':
-        HWND hwnd = FindWindow(NULL, "Multi_Commands");
+        HWND hwnd = FindWindow(NULL, "OT_Tools_Commands");
 
         if (hwnd)
         {
@@ -267,7 +286,7 @@ void show_command_list_page1(void)
 
 void show_command_list_page2(void)
 {
-    SetConsoleTitle("Multi_Commands");
+    SetConsoleTitle("OT_Tools_Commands");
 
     cls();
 
@@ -293,13 +312,13 @@ void show_command_list_page2(void)
         {
             break;
         }
-        printf("\nInvalid input. ");
+        printf("\n\aInvalid input. ");
     }
 
     switch (command)
     {
     case '0':
-        HWND hwnd = FindWindow(NULL, "Multi_Commands");
+        HWND hwnd = FindWindow(NULL, "OT_Tools_Commands");
 
         if (hwnd)
         {
@@ -331,6 +350,8 @@ void extra_info(void) // misc info that isn't too important
     printf("\nWhen asked for something like an exponent, it's stored as an integer");
     printf("\nSo don't make it a decimal");
 
+    printf("\n");
+
     while (1) // inf loop so the window doesn't auto close
     {
     }
@@ -349,7 +370,7 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
         {
             break;
         }
-        printf("Invalid input. Enter a valid input (Y/N): ");
+        printf("\a\nInvalid input. Enter a valid input (Y/N): ");
     }
 
     switch (command)
@@ -358,7 +379,7 @@ void exit_program(void) // exit prompt to ensure that the user wants to exit
     case 'Y':
         clear_terminal_main();
 
-        HWND mu_cmd = FindWindow(NULL, "Multi_Commands");
+        HWND mu_cmd = FindWindow(NULL, "OT_Tools_Commands");
         HWND ex_info = FindWindow(NULL, "Extra_Info");
 
         if (mu_cmd)

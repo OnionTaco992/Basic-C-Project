@@ -3,5 +3,6 @@
 
 void prntsp(void);
 void cls(void);
+void write_text(char array[], int ms);
 
 #endif

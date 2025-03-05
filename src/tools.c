@@ -6,6 +6,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <windows.h>
 
 void prntsp(void)
 {
@@ -15,4 +17,15 @@ void prntsp(void)
 void cls(void)
 {
     system("cls");
+}
+
+void write_text(char array[], int ms)
+{
+    int i;
+
+    for (i = 0; array[i] != '\0'; i++)
+    {
+        printf("%c", array[i]);
+        Sleep(ms);
+    }
 }
