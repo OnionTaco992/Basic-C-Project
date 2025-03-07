@@ -312,6 +312,7 @@ void show_command_list_page2(void)
     printf("\nPress 1 for a number guessing game");
     printf("\nPress 2 for a prime number calculator");
     printf("\nPress 3 for a random path generator");
+    printf("\nPress 4 for a string writer");
     printf("\nPress 0 to exit the program");
     printf("\nUse < and > to change command list pages\n\n");
 

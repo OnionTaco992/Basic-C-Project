@@ -18,8 +18,8 @@ void string_writer(void)
                        "Why did I even make this...",
                        "You can launch this directly using a certain launch parameter...\nNot that you ever would want to though...",
                        "Error: String not found\nJust kidding ;)",
-                       "100%% bug free...\nUntil it isn't",
-                       "Run this at 3am and your whole computer while blow up...",
+                       "100% bug free...\nUntil it isn't",
+                       "Run this at 3am and your whole computer will blow up...",
                        "Press a button here and something could happen, Good or Bad, you never know.",
                        "Jumpscare in two seconds...\nBoo",
                        "Open the main program with -olpl for a list of cool stuff"};
@@ -29,7 +29,7 @@ void string_writer(void)
         int chosen_string;
         while (1)
         {
-            chosen_string = generate_random_number2(0, 3);
+            chosen_string = generate_random_number2(0, 8);
             if (chosen_string != prev)
             {
                 break;
