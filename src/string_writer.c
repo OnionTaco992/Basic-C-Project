@@ -29,7 +29,7 @@ void string_writer(void)
         int chosen_string;
         while (1)
         {
-            chosen_string = generate_random_number2(0, 3);
+            chosen_string = generate_random_number2(0, 8);
             if (chosen_string != prev)
             {
                 break;
